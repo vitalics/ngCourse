@@ -1,5 +1,4 @@
 import { Main } from './app/app.main';
 
-let myMain: Main = new Main();
-
-myMain.HelloWorld('123');
+let mymain:Main = new Main();
+mymain.initMap();
