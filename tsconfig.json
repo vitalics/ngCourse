@@ -9,5 +9,12 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "typings/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
