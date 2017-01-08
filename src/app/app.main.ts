@@ -1,53 +1,48 @@
+/// <reference path="../../node_modules/@types//googlemaps/index.d.ts" />
+
 export class Main {
+
     private map: google.maps.Map;
-    private infoWindow: google.maps.MVCObject;
-    private service: google.maps.places.PlacesService;
+    private marker: google.maps.Marker;
+
+    private options: PositionOptions = {
+        enableHighAccuracy: true,
+        maximumAge: 0
+    }
+    
+    public currentCoordinates: Coordinates;
 
     constructor() {
+        this.initMap();
     }
 
     public initMap(): void {
+        let currlocation;
+        if (navigator.geolocation) {
+            currlocation = navigator.geolocation.getCurrentPosition((position: Position) => {
+                this.currentCoordinates = position.coords;
 
-        let pyrmont = { lat: -33.867, lng: 151.195 };
+                console.log('Your current position is:');
+                console.log(`Latitude : ${position.coords.latitude}`);
+                console.log(`Longitude: ${position.coords.longitude}`);
+                console.log(`More or less ${position.coords.accuracy} meters.`);
 
-        this.map = new google.maps.Map(document.getElementById('map'), {
-            center: pyrmont,
-            zoom: 15,
-            styles: [{
-                stylers: [{ visibility: 'simplified' }]
-            }, {
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }]
-            }]
-        });
+                let mylocation = {
+                    lat: this.currentCoordinates.latitude,
+                    lng: this.currentCoordinates.longitude
+                }
 
-        this.infoWindow = new google.maps.InfoWindow();
-        this.service = new google.maps.places.PlacesService(this.map);
+                this.map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 10,
+                    center: mylocation
+                })
 
-        this.service.nearbySearch({
-            location: pyrmont,
-            radius: 500,
-            types: ['store']
-        }, this.callback);
-    }
-    public createMarker(place: any) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-            map: this.map,
-            position: place.geometry.location
-        });
-
-        google.maps.event.addListener(marker, 'click', function () {
-            this.infowindow.setContent(place.name);
-            this.infowindow.open(this.map, this);
-        });
-    }
-    public callback(results: any, status: any): void {
-        let myMain: Main = new Main();
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                myMain.createMarker(results[i]);
-            }
+                this.marker = new google.maps.Marker({
+                    position: mylocation,
+                    map: this.map
+                });
+                return this.currentCoordinates;
+            });
         }
     }
 }

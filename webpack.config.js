@@ -36,8 +36,11 @@ module.exports = {
                 loader: 'html'
             },
             {
-                test: /\.css$/,
-                loader: 'raw'
+                test: /\.css$/, loader: 'style-loader!raw'
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg|jpg|ico)(\?[a-z0-9=\.]+)?$/,
+                loader: 'url-loader'
             },
             {
                 test: /\.json$/,
