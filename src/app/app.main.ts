@@ -1,5 +1,5 @@
 /// <reference path="../../node_modules/@types//googlemaps/index.d.ts" />
-
+import { WeatherRequest } from './service/weather.request';
 export class Main {
 
     private map: google.maps.Map;
@@ -9,11 +9,13 @@ export class Main {
         enableHighAccuracy: true,
         maximumAge: 0
     }
-    
+
     public currentCoordinates: Coordinates;
 
     constructor() {
         this.initMap();
+
+
     }
 
     public initMap(): void {
@@ -41,8 +43,19 @@ export class Main {
                     position: mylocation,
                     map: this.map
                 });
+
+                let weatherRequest: WeatherRequest = new WeatherRequest();
+
+                let data = weatherRequest.GetWeatherForSities(position, 50, true);
+
+                // for (let i = 0; i < 50; i++) {
+                //     data.
+                // }
+
                 return this.currentCoordinates;
             });
         }
+
+
     }
 }
