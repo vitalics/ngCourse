@@ -1,4 +1,4 @@
-{
+export const mockWeatherData = {
     "message": "accurate",
     "cod": "200",
     "count": 50,
