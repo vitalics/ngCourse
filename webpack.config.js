@@ -3,8 +3,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        // 'vendor': './src/vendor.ts',
-        // 'polyfills': './src/polyfills.ts',
+        'vendor': './src/vendor.ts',
+        'polyfills': './src/polyfills.ts',
         'app': './src/main.ts',
     },
 
@@ -36,11 +36,8 @@ module.exports = {
                 loader: 'html'
             },
             {
-                test: /\.css$/, loader: 'style-loader!raw'
-            },
-            {
-                test: /\.(png|woff|woff2|eot|ttf|svg|jpg|ico)(\?[a-z0-9=\.]+)?$/,
-                loader: 'url-loader'
+                test: /\.css$/,
+                loader: 'raw'
             },
             {
                 test: /\.json$/,
@@ -51,7 +48,7 @@ module.exports = {
 
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['app']
+            name: ['app', 'vendor', 'polyfills']
         }),
         new HtmlWebpackPlugin({
             template: 'src/index.html'
