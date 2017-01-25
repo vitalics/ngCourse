@@ -1,0 +1,8 @@
+<div class="w3-row w3-container">
+    <card-creator (createCard)="onCreateCard($event)" class="card-creator-container"></card-creator>
+    <div class="cards">
+        <div class="w3-row between">
+            <info-card [card]="card" *ngFor="let card of cards; let i = index" (checked)="onCardChecked($event,i)"></info-card>
+        </div>
+    </div>
+</div>

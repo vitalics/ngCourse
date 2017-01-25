@@ -1,0 +1,22 @@
+<div>
+    <form class="w3-container w3-card-4" (submit)="onCreateCard()">
+        <h2 class="w3-text-blue">Cards Creator</h2>
+        <p>
+            <label class="w3-text-blue"><b>Title name</b></label>
+            <input class="w3-input w3-border" type="text" [(ngModel)]="newCard.title" name="newCardTitle"></p>
+        <p>
+            <label class="w3-text-blue"><b>Content </b></label>
+            <input class="w3-input w3-border" type="text" [(ngModel)]="newCard.content" name="newCardContent"></p>
+        <p>
+            <label class="w3-text-blue"><b>Footer name</b></label>
+            <input class="w3-input w3-border" type="text" [(ngModel)]="newCard.footer" name="newCardFooter"></p>
+        <p>
+            <label class="w3-text-blue"><b>Background color</b></label>
+            <input class="w3-input w3-border" type="text" [(ngModel)]="newCard.color" name="newCardColor"></p>
+        <p>
+            <button class="w3-btn w3-blue">Submit</button></p>
+    </form>
+    <pre>
+{{newCard | json}}
+    </pre>
+</div>

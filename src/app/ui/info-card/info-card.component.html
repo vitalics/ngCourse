@@ -1,0 +1,25 @@
+<div class="margins w3-card-8" 
+(mouseleave)="toggleChecked()" 
+(mouseenter)="toggleChecked()"
+[ngStyle]="{'background-color': card.color}"
+ >
+
+    <header class="w3-container w3-blue">
+        <h1>{{card.title}}</h1>
+    </header>
+
+    <div class="w3-container">
+        <p>{{card.content}} </p>
+    </div>
+
+    <button class="w3-btn-block w3-center"
+     (click)="onClicked()"
+      *ngIf="showCheck"
+      
+      >Show more info</button>
+
+    <footer class="w3-container w3-blue">
+        <h5> {{card.footer}} </h5>
+    </footer>
+
+</div>

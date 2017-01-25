@@ -1,0 +1,12 @@
+.side-menu-container {
+    z-index: 800;
+}
+
+.main-container {
+    margin-left: 200px;
+    margin-top: 47px;
+}
+
+.top-menu-container {
+    z-index: 1000;
+}
