@@ -5,7 +5,7 @@ declare namespace wa.map {
     }
     interface IMarker {
         position: IMapPosition,
-        infotext: string
+        infotext?: string
     }
     interface InfoWindow extends google.maps.InfoWindow {
         map: google.maps.Map;

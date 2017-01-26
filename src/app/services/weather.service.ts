@@ -14,7 +14,7 @@ export class WeatherService {
         private http: Http
     ) { }
 
-    public GetWeatherForCities(position: Position, citiesCounts: number, isMock: boolean, units?: string) {
+    public GetWeatherForCities(position: Position, citiesCounts: number, isMock: boolean, units?: string): Observable<wa.entities.ICitiesInfos> {
         if (isMock) {
             return Observable.of(this.mockData);
         }

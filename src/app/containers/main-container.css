@@ -10,3 +10,7 @@
 .top-menu-container {
     z-index: 1000;
 }
+.my-map{
+    height: 300px;
+    width: 300px;
+}

@@ -8,8 +8,8 @@ import { WeatherService } from '../services';
 })
 export class MainContainerComponent implements OnInit {
     public position: wa.map.IMapPosition;
-    public markers: wa.map.IMarker[];
 
+    public markers: wa.map.IMarker[];
     constructor(private weatherService: WeatherService) { }
 
     ngOnInit(): void {
@@ -21,7 +21,14 @@ export class MainContainerComponent implements OnInit {
                 };
 
                 this.weatherService.GetWeatherForCities(position, 50, true, 'metric').subscribe(info => {
-                    console.log(info);
+                    this.markers = info.list.map(city => {
+                        return {
+                            position: {
+                                lat: this.position.lat,
+                                lng: this.position.lng
+                            }
+                        }
+                    })
                 })
             })
         }
